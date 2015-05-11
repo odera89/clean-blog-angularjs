@@ -1,0 +1,44 @@
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>{{ page_title }}</h1>
+                    <hr class="small">
+                    <span class="subheading">{{ page_subtitle }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <p class="text-center" ng-show="loading"><span class="fa fa-spinner fa-3x fa-spin"></span></p>
+
+            <div class="post-preview" ng-repeat="post in posts">
+                <h2 class="post-title">
+                    <a ui-sref="post({id:post.id,slug:post.post_slug})">{{ post.post_title }}</a>
+                </h2>
+                <div ng-show="post.categories != undefined">
+                <ul class="list-unstyled post-categories">
+                    <li ng-repeat="categories in post.categories">{{ categories.title }}{{$last ? ' ' : ',&nbsp;' }}</li>
+                </ul>
+            </div>
+                <p class="post-subtitle" ng-bind-html="post.post_content | limitHtml: 230"></p>
+                <p class="post-meta">Posted by <a href="#">{{ post.author.firstname }} {{ post.author.lastname }}</a> on {{ dateFormat(post.post_date) | date:'MMMM dd, yyyy'}}</p>
+            </div>
+            <hr>
+
+            <h3 ng-show="noResult" class="text-center">NO POSTS FOUND</h3>
+
+            <div>
+                <posts-pagination></posts-pagination>
+            </div>
+        </div>
+    </div>
+</div>

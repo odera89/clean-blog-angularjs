@@ -1,0 +1,68 @@
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('img/contact-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>{{ page_title }}</h1>
+                    <hr class="small">
+                    <span class="subheading">{{ page_subtitle }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <p>Want to get in touch with me? Fill out the form below to send me a message and I will try to get back to you within 24 hours!</p>
+            <!-- Contact Form - Enter your email address on line 28 of the mail/contact_me.php file to make this form work. -->
+            <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+            <form ng-submit="submit(contactform)" method="post" name="contactForm" id="contactForm" role="form" novalidate>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls" show-errors>
+                        <label>Name</label>
+                        <input type="text" class="form-control" placeholder="Name" id="name" name="contactName" ng-model="formData.contactName" required>
+                        <p class="help-block" ng-if="contactForm.contactName.$error.required">The Name is required</p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls" show-errors>
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" placeholder="Email Address" id="email" name="contactEmail" ng-pattern="email" ng-model="formData.contactEmail" required>
+                        <p class="help-block" ng-if="contactForm.contactEmail.$error.required">The Email Address is required</p>
+                        <p class="help-block" ng-if="contactForm.contactEmail.$error.pattern">The Email Address must be ex.: [ user@user.com ]</p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls" show-errors>
+                        <label>Phone Number</label>
+                        <input type="tel" class="form-control" placeholder="Phone Number" id="phone" name="contactPhone" ng-pattern="phone_number" ng-model="formData.contactPhone" ng-minlength="10" required>
+                        <p class="help-block" ng-if="contactForm.contactPhone.$error.required">The Phone Number is required</p>
+                        <p class="help-block" ng-if="contactForm.contactPhone.$error.minlength">The Phone Number must be min. 10 character.</p>
+                        <p class="help-block" ng-if="contactForm.contactPhone.$error.pattern">The Phone Number must be ex.: [+12-236-23658 or 12-236-23658 or 123623658]</p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls" show-errors>
+                        <label>Message</label>
+                        <textarea rows="5" class="form-control" placeholder="Message" id="message" name="contactMessage" ng-model="formData.contactMessage" required></textarea>
+                        <p class="help-block" ng-if="contactForm.contactMessage.$error.required">The Message is required</p>
+                    </div>
+                </div>
+                <br>
+                <div ng-class="alertClass" ng-show="alert" role="alert">{{ resultMessage }}</div>
+                <p class="text-center" ng-show="loading"><span class="fa fa-spinner fa-2x fa-spin"></span></p>
+                <div class="row" ng-hide="loading">
+                    <div class="form-group col-xs-12">
+                        <button type="submit" class="btn btn-default">Send</button>
+                        <button class="btn btn-link" ng-click="reset()">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
