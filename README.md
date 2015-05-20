@@ -2,7 +2,7 @@
 Is a very simple Blog theme from <a href="http://ironsummitmedia.github.io/startbootstrap-clean-blog/">startbootstrap.com</a> with angularJs with working contact form by PHP mailer.
 
 # Demo
-Coming Soon !
+<a href="http://clean-blog-angular.hunor.me/">Click here for demo !</a>
 
 # Installation
 It's very simple, just clone or download this repo and you have a simple blog in angularJs.
