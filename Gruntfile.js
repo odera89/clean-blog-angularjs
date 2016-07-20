@@ -3,31 +3,57 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
+    ngAnnotate: {
+      oprions : {
+          singleQuotes: true
       },
+      app: {
+          files: {
+              './js/app/app.js' : [ './dist/app/app.js' ]
+          }
+      }
+    },
+    concat: {
       dist: {
-        src: ['lib/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
+        src: ['js/app/app.js'],
+        dest: 'dist/js/app/app.js'
       }
     },
     uglify: {
-      options: {
-        banner: '<%= banner %>'
-      },
       dist: {
         src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
+        dest: 'dist/js/app/app.js'
+      }
+    },
+    // ng-annotate tries to make the code safe for minification automatically
+    // by using the Angular long form for dependency injection.
+    ngAnnotate: {
+      dist: {
+        files: {
+          expand: true,
+          cwd: './',
+          src: 'dist/js/app/*.js',
+          dest: 'dist/js/app/'
+          }
+       }
+    },
+    copy: {
+      files: {
+        cwd: './',
+        src: [
+           'index.html', 
+           'pages/*', 
+           'json/*', 
+           'js/app/*', 
+           'js/bootstrap/*', 
+           'js/jquery/*', 
+           'js/angular/*',  
+           'css/*', 
+           'img/*'],
+        dest:'dist/',
+        expand: true
       }
     },
     jshint: {
@@ -72,12 +98,13 @@ module.exports = function(grunt) {
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-ng-annotate');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-
+  grunt.registerTask('build', ['copy', 'concat', 'ngAnnotate', 'uglify']);
 };
