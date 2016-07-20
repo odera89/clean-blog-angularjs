@@ -4,9 +4,13 @@ Is a very simple Blog theme from <a href="http://ironsummitmedia.github.io/start
 # Demo
 <a href="http://clean-blog-angular.hunor.me/">Click here for demo !</a>
 
-# Installation
-It's very simple, just clone or download this repo and you have a simple blog in angularJs.
-
+# Installation && deployment
+It's very simple, just clone or download this repo.<br>
+<p>
+<strong>Run</strong> `npm install` - For installing the depdenencies<br>
+<strong>Then</strong> `grunt build` - For building the application<br>
+<strong>And</strong> `cp ./dist ./{Your favourite web server/` e.g. /usr/share/nginx/html for nginx.<br>
+</p>
 # Credits
 <a href="http://startbootstrap.com/">Startbootstrap</a><br />
 <a href="http://fortawesome.github.io/Font-Awesome/">Font-awesome</a><br />
