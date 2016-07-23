@@ -3,14 +3,24 @@ Is a very simple Blog theme from <a href="http://ironsummitmedia.github.io/start
 
 # Demo
 <a href="http://clean-blog-angular.hunor.me/">Click here for demo !</a>
+Or
+Download or clone this repository and open index.html using your favourite browser!
 
-# Installation && deployment
-It's very simple, just clone or download this repo.<br>
+# Building the blog
+It's very simple.
 <p>
-<strong>Run</strong> `npm install` - For installing the depdenencies<br>
-<strong>Then</strong> `grunt build` - For building the application<br>
-<strong>And</strong> `cp ./dist ./{Your favourite web server/` e.g. /usr/share/nginx/html for nginx.<br>
+<strong>Clone</strong> or download this repo.<br> 
+<strong>Then</strong> `npm install` - For installing the depdenencies<br> 
+<strong>And</strong> `grunt build` - For building the application<br><br>
 </p>
+
+# Deployment
+Use Docker!
+<p>
+Simply build the image by running `docker build -t clean:blog .`
+Then `docker images` - Jote down the image Id
+And `docker run -p "80:80" <ImageId>`
+
 # Credits
 <a href="http://startbootstrap.com/">Startbootstrap</a><br />
 <a href="http://fortawesome.github.io/Font-Awesome/">Font-awesome</a><br />
